@@ -5,10 +5,12 @@ let rainbow=document.querySelector("#rainbow");
 let pen=document.querySelector("#pencolor");
 pen.addEventListener("change", colorchange);
 reset.addEventListener("click", screenrender);
-rainbow.addEventListener("click", screenrender);
-random.addEventListener("click", rainbowrender);
+rainbow.addEventListener("click", rainbowrender);
+random.addEventListener("click", randomrender);
 let colour;
 let rando = false;
+let rainbowpen = false;
+let j = Number(1);
 
 screenrender();
 
@@ -36,17 +38,37 @@ function screenrender(){
 function colorchange(e){
     colour= e.target.value;
     rando=false;
+    rainbowpen=false;
     screenrender();
 }
 
 function rainbowrender(){
+    rando=false;
+    rainbowpen=true;
+    screenrender();
+
+}
+
+function randomrender(){
     rando=true;
+    rainbowpen=false;
     screenrender();
 
 }
 
 function shade(e){
-    let p = Number(e.target.style.opacity);
-    p = p + 0.25;
-    e.target.style.opacity = p;
+
+    if(rainbowpen){
+        colour = "hsl("+j+", 100%, 50%)";
+        j++;
+        if(j>359){
+            j=1;
+        }
+        e.target.style.backgroundColor = colour;
+        e.target.style.opacity = 1.0;
+    }else{
+        let p = Number(e.target.style.opacity);
+        p = p + 0.25;
+        e.target.style.opacity = p;
+    }
 }
