@@ -20,7 +20,7 @@ function screenrender(){
         screen.removeChild(screen.firstChild);
     }
 
-    for(let i=0; i < 3600; i++){
+    for(let i=0; i < 1600; i++){
         let pixel=document.createElement('div');
         pixel.setAttribute("class", "pixel");
         screen.appendChild(pixel);
